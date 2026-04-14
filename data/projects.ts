@@ -25,7 +25,7 @@ export const projects: Project[] = [
   {
     id: "huemen-id",
     slug: "huemen-id",
-    title: "HUEMEN",
+    title: "HueMen",
     category: "iOS",
     objective: "Personal wardrobe assistant using camera-based color detection and virtual closet for styling recommendations.",
     techStack: ["Swift", "SwiftUI", "CoreML", "AVFoundation", "Xcode"],
@@ -35,9 +35,9 @@ export const projects: Project[] = [
   {
     id: "siraj-app",
     slug: "siraj-app",
-    title: "SIRAJ",
+    title: "S.I.R.A.J",
     category: "iOS",
-    objective: "Interactive app to help Pencak Silat beginners correct postures for belt promotion tests.",
+    objective: "An interactive posture guidance app designed to help Pencak Silat beginners refine movements through visual feedback",
     techStack: ["Swift", "SwiftUI", "Vision", "CoreML", "Xcode"],
     roles: ["Developer", "Researcher"],
     results: "Published on TestFlight; 5+ users reported feeling helped by the clear posture guidance provided."
@@ -58,8 +58,9 @@ export const projects: Project[] = [
     title: "DreamRank",
     category: "iOS",
     objective: "Gamified sleep-habit app using daily quests, leaderboards, and competition to build consistent rest routines.",
-    techStack: ["Swift", "SwiftUI", "HealthKit", "CloudKit", "Xcode"],
+    techStack: ["Swift", "SwiftUI", "HealthKit", "CloudKit", "Xcode", "Figma"],
     roles: ["Developer", "Researcher", "Designer"],
-    results: "Successfully published on App Store; HealthKit and CloudKit integration validated with 10+ users for gamified habit building."
+    results: "Successfully published on App Store; HealthKit and CloudKit integration validated with 30+ users for gamified habit building.",
+    image: "/PortoDreamRank.jpg"
   }
 ];
