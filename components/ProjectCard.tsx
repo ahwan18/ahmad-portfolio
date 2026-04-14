@@ -60,7 +60,7 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
 
           {/* OBJECTIVE */}
-          <p className="text-sm text-muted font-light leading-relaxed mb-4">
+          <p className="text-sm text-muted font-light leading-relaxed mb-4 line-clamp-3">
             {project.objective}
           </p>
 
@@ -88,7 +88,7 @@ export function ProjectCard({ project }: { project: Project }) {
             {/* RESULTS */}
             <div className="bg-emerald-50/80 dark:bg-emerald-500/10 backdrop-blur-sm p-3 rounded-xl border border-emerald-100 dark:border-emerald-500/20">
               <div className="flex items-start gap-2">
-                <p className="text-[12px] leading-relaxed text-emerald-700 dark:text-emerald-300">
+                <p className="text-[12px] leading-relaxed text-emerald-700 dark:text-emerald-300 line-clamp-3">
                   {project.results}
                 </p>
               </div>

@@ -1,7 +1,7 @@
 import { projects } from "@/data/projects";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CheckCircle, Code, Layers, UserCircle } from "lucide-react";
-import Link from "next/link";
+import { BackButton } from "../../../components/BackButton";
 import Image from "next/image";
 
 export function generateStaticParams() {
@@ -20,9 +20,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="container mx-auto px-6 py-24 max-w-4xl">
-      <Link href="/" className="inline-flex items-center gap-2 text-muted hover:text-foreground transition-colors mb-12">
-        <ArrowLeft className="w-4 h-4" /> Back to Portfolio
-      </Link>
+      <BackButton />
 
       <div className="mb-12">
         <div className="inline-block px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-semibold tracking-wider uppercase mb-4 shadow-sm shadow-black/5">
