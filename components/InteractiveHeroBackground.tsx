@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export function InteractiveHeroBackground() {
+  const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -20,16 +21,15 @@ export function InteractiveHeroBackground() {
   const [gyro, setGyro] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Detect mobile
+    setMounted(true);
+    
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    // Mouse movement listener
     const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
         const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-        // Calculate relative position (-1 to 1)
         const x = (e.clientX - left) / width - 0.5;
         const y = (e.clientY - top) / height - 0.5;
         mouseX.set(x * 100);
@@ -37,14 +37,11 @@ export function InteractiveHeroBackground() {
       }
     };
 
-    // Gyroscope listener for mobile
     const handleOrientation = (e: DeviceOrientationEvent) => {
-      if (isMobile && e.beta !== null && e.gamma !== null) {
-        // beta: -180 to 180 (front-back tilt)
-        // gamma: -90 to 90 (left-right tilt)
+      if (window.innerWidth < 768 && e.beta !== null && e.gamma !== null) {
         setGyro({
           x: (e.gamma / 45) * 20,
-          y: ((e.beta - 45) / 45) * 20, // Offset for comfort (holding at 45 deg)
+          y: ((e.beta - 45) / 45) * 20,
         });
       }
     };
@@ -59,7 +56,11 @@ export function InteractiveHeroBackground() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("deviceorientation", handleOrientation);
     };
-  }, [isMobile, mouseX, mouseY]);
+  }, [mouseX, mouseY]);
+
+  if (!mounted) {
+    return <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" />;
+  }
 
   return (
     <div ref={containerRef} className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -92,7 +93,6 @@ export function InteractiveHeroBackground() {
 }
 
 function Particle({ 
-  index, 
   springX, 
   springY, 
   gyro, 
@@ -104,7 +104,6 @@ function Particle({
   gyro: any; 
   isMobile: boolean 
 }) {
-  // Random static positions
   const [pos] = useState({
     x: Math.random() * 100,
     y: Math.random() * 100,
@@ -113,8 +112,6 @@ function Particle({
     parallaxSpeed: Math.random() * 0.5 + 0.2,
   });
 
-  // Create derived motion values for parallax
-  // This ensures the animation runs on the GPU/Motion thread without re-rendering the component
   const transX = useTransform(springX, (val: number) => val * -pos.parallaxSpeed);
   const transY = useTransform(springY, (val: number) => val * -pos.parallaxSpeed);
 
@@ -123,7 +120,6 @@ function Particle({
       style={{
         left: `${pos.x}%`,
         top: `${pos.y}%`,
-        // Switch between gyro (state-driven) and cursor (motion-value driven)
         x: isMobile ? gyro.x * pos.parallaxSpeed : transX,
         y: isMobile ? gyro.y * pos.parallaxSpeed : transY,
         width: pos.size,
