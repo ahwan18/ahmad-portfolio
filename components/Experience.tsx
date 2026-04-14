@@ -19,33 +19,33 @@ export function Experience() {
           <div className="bg-card border border-border/10 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-sm shadow-black/5 transition-colors duration-300">
             <div className="mb-8">
               <h3 className="text-2xl font-semibold text-foreground mb-2">Apple Developer Academy</h3>
-              <p className="text-muted">Researcher & Full-Stack App Developer</p>
+              <p className="text-muted">Researcher & Mobile App Developer</p>
             </div>
 
             <p className="text-foreground/80 mb-8 font-light leading-relaxed max-w-3xl">
-              Architected end-to-end applications through rigorous Challenge Based Learning (CBL). Spearheaded cross-functional teams to design, prototype, and ship high-impact spatial and mobile solutions utilizing SwiftUI, VisionOS, and seamless backend integration.
+              Designed and developed end-to-end mobile applications through Challenge Based Learning (CBL), focusing on solving real-world problems with user-centered approaches. Collaborated in cross-functional teams to research, prototype, and deliver impactful iOS and spatial experiences using SwiftUI and Apple’s ecosystem.
             </p>
 
             <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
               <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-border/10 transition-colors">
                 <Network className="w-5 h-5 text-accent mb-3" />
-                <h4 className="font-medium text-foreground text-sm mb-1">Architecture</h4>
-                <p className="text-xs text-muted">Node.js/ExpressJS robust backends</p>
+                <h4 className="font-medium text-foreground text-sm mb-1">Product Development</h4>
+                <p className="text-xs text-muted">Built and iterated mobile applications from ideation to deployment</p>
               </div>
               <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-border/10 transition-colors">
                 <Code className="w-5 h-5 text-blue-500 mb-3" />
-                <h4 className="font-medium text-foreground text-sm mb-1">Frontend Engineering</h4>
-                <p className="text-xs text-muted">SwiftUI & VisionOS immersion</p>
+                <h4 className="font-medium text-foreground text-sm mb-1">iOS Engineering</h4>
+                <p className="text-xs text-muted">Developed intuitive interfaces using SwiftUI within Apple ecosystem</p>
               </div>
               <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-border/10 transition-colors">
                 <Rocket className="w-5 h-5 text-orange-500 mb-3" />
-                <h4 className="font-medium text-foreground text-sm mb-1">Impact & Delivery</h4>
-                <p className="text-xs text-muted">Shipped prototypes at scale</p>
+                <h4 className="font-medium text-foreground text-sm mb-1">Collaboration & Research</h4>
+                <p className="text-xs text-muted">Worked in teams to validate ideas through user research and testing</p>
               </div>
               <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-border/10 flex items-center justify-center">
                 <div className="text-center">
                   <p className="text-xs text-muted uppercase tracking-widest font-semibold mb-1">Identity</p>
-                  <p className="text-sm text-foreground font-medium">Multidisciplinary<br />Full-Stack</p>
+                  <p className="text-sm text-foreground font-medium">User-Centered<br />Mobile Developer</p>
                 </div>
               </div>
             </div>

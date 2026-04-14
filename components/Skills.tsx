@@ -3,15 +3,15 @@ import { FadeIn } from "./FadeIn";
 const skills = [
   {
     category: "Languages",
-    items: ["Python", "Java", "Node.js (JS)", "PHP", "SwiftUI"]
+    items: ["Python", "Java", "Node.js (JS/TS)", "PHP", "SwiftUI", "React"]
   },
   {
     category: "Frameworks",
-    items: ["ExpressJS", "SwiftData", "Vision"]
+    items: ["ExpressJS", "SwiftData", "Vision", "Next.js", "TailwindCSS"]
   },
   {
     category: "Tools & DBs",
-    items: ["Git", "MySQL / MariaDB"]
+    items: ["Git", "MySQL / MariaDB", "PostgreSQL"]
   }
 ];
 
