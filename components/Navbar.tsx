@@ -2,7 +2,7 @@
 import { FadeIn } from "./FadeIn";
 import { ThemeToggle } from "./ThemeToggle";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -20,20 +20,25 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  const isManualScrolling = useRef(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
     // Only track intersection if we are on the homepage
     if (pathname !== "/") return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
+        // If we clicked a link recently, ignore observer events to prevent jumping back
+        if (isManualScrolling.current) return;
+
+        const visibleSections = entries.filter((entry) => entry.isIntersecting);
+        if (visibleSections.length > 0) {
+          const mostVisible = visibleSections.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          setActiveSection(mostVisible.target.id);
+        }
       },
-      // Offset triggers the active state when a section is roughly centralized
-      { rootMargin: "-30% 0px -70% 0px", threshold: 0 } 
+      { rootMargin: "-20% 0px -40% 0px", threshold: 0 } 
     );
 
     navLinks.forEach(({ href }) => {
@@ -53,9 +58,16 @@ export function Navbar() {
       e.preventDefault();
       const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+        
+        isManualScrolling.current = true;
         setActiveSection(href.substring(1));
+        element.scrollIntoView({ behavior: "smooth" });
         setIsMobileMenuOpen(false);
+
+        scrollTimeout.current = setTimeout(() => {
+          isManualScrolling.current = false;
+        }, 1000); 
       }
     }
   };
@@ -95,17 +107,13 @@ export function Navbar() {
                     key={link.name} 
                     href={pathname === "/" ? link.href : `/${link.href}`}
                     onClick={(e) => handleScroll(e, link.href)}
-                    className={`relative px-4 py-2 text-sm font-medium transition-colors ${isActive ? 'text-foreground' : 'text-muted hover:text-foreground/80'}`}
+                    className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                      isActive && pathname === "/" 
+                        ? 'bg-foreground/10 text-foreground shadow-sm' 
+                        : 'text-muted hover:text-foreground hover:bg-foreground/5'
+                    }`}
                   >
                     {link.name}
-                    {isActive && pathname === "/" && (
-                      <motion.div
-                        layoutId="navUnderline"
-                        className="absolute left-0 right-0 bottom-0 h-0.5 bg-accent"
-                        initial={false}
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
                   </Link>
                 );
               })}
