@@ -3,23 +3,27 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #fafafa;
-  --foreground: #1e293b;
+  --background: #f8fafc;
+  --foreground: #0f172a;
   --card: #ffffff;
   --card-foreground: #0f172a;
   --border: #e2e8f0;
   --accent: #0284c7;
   --muted: #64748b;
+  --orb-1: #e0f2fe;
+  --orb-2: #f5f3ff;
 }
 
 .dark {
-  --background: #000000;
-  --foreground: #f5f5f7;
-  --card: #1c1c1e;
-  --card-foreground: #ffffff;
-  --border: #38383a;
-  --accent: #007aff;
-  --muted: #86868b;
+  --background: #030712;
+  --foreground: #f8fafc;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --border: #1e293b;
+  --accent: #38bdf8;
+  --muted: #94a3b8;
+  --orb-1: #1e3a8a;
+  --orb-2: #4c1d95;
 }
 
 @theme inline {
@@ -30,6 +34,8 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
+  --color-orb-1: var(--orb-1);
+  --color-orb-2: var(--orb-2);
 }
 
 html {

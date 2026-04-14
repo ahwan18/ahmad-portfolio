@@ -80,10 +80,10 @@ export function Navbar() {
       transition={{ duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98], delay: 0.1 }}
     >
         {/* Advanced Masking: Gradient mask to smoothly hide sharp text scrolling above the navbar */}
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/90 to-transparent -z-10" />
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/95 to-transparent -z-10" />
         
         <div className="container mx-auto max-w-6xl px-6 pt-4">
-          <nav className="pointer-events-auto flex flex-col md:flex-row md:items-center justify-between px-6 py-3 rounded-[2rem] bg-white/70 dark:bg-black/70 backdrop-blur-md border border-border/20 shadow-sm shadow-black/5">
+          <nav className="pointer-events-auto flex flex-col md:flex-row md:items-center justify-between px-6 py-3 rounded-[2rem] bg-white/40 dark:bg-black/40 backdrop-blur-xl border border-border/20 shadow-sm shadow-black/5">
             <div className="flex items-center justify-between w-full md:w-auto">
               <Link href="/" className="font-semibold text-lg hover:opacity-80 transition-opacity">
                 Ahmad<span className="text-accent">.</span>

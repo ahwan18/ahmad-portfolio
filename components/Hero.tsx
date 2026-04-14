@@ -1,10 +1,11 @@
 import { FadeIn } from "./FadeIn";
 import { ArrowDown, Mail } from "lucide-react";
+import { InteractiveHeroBackground } from "./InteractiveHeroBackground";
 
 export function Hero() {
   return (
     <section id="home" className="relative min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden">
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(2,132,199,0.08),transparent_50%)] dark:bg-[radial-gradient(circle_at_center,rgba(0,122,255,0.08),transparent_50%)] top-0 left-0 w-full h-full pointer-events-none" />
+      <InteractiveHeroBackground />
 
       <div className="container mx-auto px-6 z-10 flex flex-col items-center text-center">
         <FadeIn delay={0.1}>
