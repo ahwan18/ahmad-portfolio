@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ahmad Kurniawan Ibrahim - Professional Portfolio
 
-## Getting Started
+A high-performance, minimalist professional portfolio showcasing skills, experience as an Apple Developer Academy Alumnus, and selected projects. 
+Built with Next.js (App Router), TypeScript, Tailwind CSS, `next-themes` (Dark/Light toggle), and Framer Motion.
 
-First, run the development server:
+## Features
+- **Adaptive UI**: Switch between a sleek Light mode and the rich Apple-inspired Dark mode natively.
+- **Micro-Animations**: Framer Motion scroll-reveals, view-triggered animations, and fluid icons.
+- **Modular Data Structure**: Easily updatable dynamic project components.
+- **Server and Client Component Separation**: Highly optimized for SEO, delivering interactive bits only where required.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How to Run locally
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Prerequisites
+Make sure you have Node.js and `npm` installed.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Run Development Server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Learn More
+3. **Build for Production:**
+   ```bash
+   npm run build
+   npm start
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧭 Technical Implementation of Navigation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+In technical interviews, recruiters may ask how the seamless "spy" navigation of this portfolio functions. Here is the technical breakdown:
 
-## Deploy on Vercel
+### Smooth Scrolling & Active States
+We rely on React's highly performant **Intersection Observer API** combined with Framer Motion. 
+When the user scrolls, `Navbar.tsx` utilizes a client-side `useEffect` hook to calculate which specific section (`#about`, `#projects`, etc.) overlaps heavily within the viewport coordinates (`rootMargin`). 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* **State Tracking:** As sections cross the invisible threshold, React state `[activeSection, setActiveSection]` updates passively to match the intersecting HTML `id`.
+* **Framer Motion Line:** The sliding underline across the desktop Nav is achieved using `<motion.div layoutId="navUnderline" />`. This allows Framer to map the spatial changes natively at 60fps across absolute boundaries without relying entirely on generic CSS transitions.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This guarantees smooth navigation and instantly signals exactly where heavily customized components lie in the document.
+
+---
+
+## 📖 The Owner's Manual (Manual To-Do List)
+
+> [!IMPORTANT]
+> **Action Required**: Before sending this portfolio to recruiters, Ahmad, please follow this checklist to finalize your professional footprint.
+
+### 1. Project Descriptions (STAR Method)
+When editing `data/projects.ts`, use the **STAR** (Situation, Task, Action, Result) method or "Problem-Solution-Result" format. 
+* *Bad:* "Built an app for students."
+* *Good:* "Engineered a spatial organizational portal using SwiftUI. Addressed fragmented communication workflows, resulting in a centralized platform scaling to 500+ active student users."
+
+### 2. Update Media Assets
+Right now, projects without images fall back to generic folder icons. 
+- Go through your Apple Developer Academy projects (e.g., **DreamRank**) and capture **high-quality, high-resolution screenshots**.
+- Save them in the `public/images/` folder and map the corresponding paths (e.g., `/images/dreamrank-demo.png`) to the `image` property in your `data/projects.ts`.
+
+### 3. Personal Branding Continuity 
+Your profile is now themed heavily around your identity as a **"Multidisciplinary Full-Stack Engineer"**. 
+- Ensure your attached resumes, LinkedIn profile, and active GitHub repos echo this exact identity. 
+- You bridge the gap between heavy Node/JS architecture and Apple ecosystem experiences. Lean into this rarity!
+
+### 4. Certifications
+Once your final semester completes:
+- **Don't Forget**: Link your official Apple Developer Academy Certification directly into your About/Experience section, or append a visible digital badge link.
+
+---
+
+## 🛠 Adding New Projects
+
+The portfolio dynamically loads projects using the data array found in `data/projects.ts`!
+To add, edit or remove projects, you do **not** need to touch the UI code. 
+
+**Step-by-step guide to adding a new project:**
+
+1. Navigate to the `data/projects.ts` file in your code editor.
+2. Locate the existing `projects` array at the bottom of the file.
+3. Add a new object following this template format:
+
+   ```typescript
+   {
+     id: "unique-project-slug",
+     title: "Your Amazing Project Title",
+     description: "A succinct 1-3 sentence summary of the challenge, role, and what you built.",
+     tools: ["SwiftUI", "Node.js", "ExpressJS"], // 2-4 primary technologies
+     link: "https://your-live-link.com", // (Optional) removes link button if omitted
+     image: "/images/your-screenshot.jpg" // (Optional) shows folder icon placeholder if omitted
+   }
+   ```
+4. Save the file! The page will instantly hot-reload with the new project elegantly animated into the showcase layout.
