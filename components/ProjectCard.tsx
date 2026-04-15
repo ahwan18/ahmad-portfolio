@@ -1,4 +1,4 @@
-import { ExternalLink, Folder, CheckCircle } from "lucide-react";
+import { ExternalLink, Folder } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Project } from "../data/projects";
@@ -18,7 +18,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <div className="aspect-video w-full relative bg-muted/10 overflow-hidden">
             <Image
               src={project.image}
-              alt={project.title}
+              alt={`Screenshot of ${project.title}`}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />

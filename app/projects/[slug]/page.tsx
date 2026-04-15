@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import { projects } from "@/data/projects";
+import { getAbsoluteUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
-import { ArrowLeft, CheckCircle, Code, Layers, UserCircle } from "lucide-react";
+import { CheckCircle, Code, Layers, UserCircle } from "lucide-react";
 import { BackButton } from "../../../components/BackButton";
 import Image from "next/image";
 
@@ -10,9 +12,74 @@ export function generateStaticParams() {
   }));
 }
 
+function getProjectBySlug(slug: string) {
+  return projects.find((project) => project.slug === slug);
+}
+
+function buildProjectSeoTitle(project: (typeof projects)[number]) {
+  const objectiveSummary = project.objective
+    .replace(/\.$/, "")
+    .split(/(?:\s+using\b|\s+with\b|\s+for\b|\s+designed\b|\s+that\b)/i)[0]
+    .trim();
+
+  return `${project.title} - ${objectiveSummary}`;
+}
+
+function buildProjectDescription(project: (typeof projects)[number]) {
+  const description = `${project.objective} ${project.results}`.trim();
+
+  return description.length > 160
+    ? `${description.slice(0, 157).trimEnd()}...`
+    : description;
+}
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const resolvedParams = await params;
+  const project = getProjectBySlug(resolvedParams.slug);
+
+  if (!project) {
+    notFound();
+  }
+
+  const title = buildProjectSeoTitle(project);
+  const description = buildProjectDescription(project);
+  const url = getAbsoluteUrl(`/projects/${project.slug}`);
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url,
+      title,
+      description,
+      images: [
+        {
+          url: getAbsoluteUrl("/opengraph-image"),
+          width: 1200,
+          height: 630,
+          alt: `${project.title} project preview`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [getAbsoluteUrl("/twitter-image")],
+    },
+  };
+}
+
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const project = projects.find((p) => p.slug === resolvedParams.slug);
+  const project = getProjectBySlug(resolvedParams.slug);
 
   if (!project) {
     notFound();
@@ -31,7 +98,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       {project.image ? (
         <div className="w-full aspect-video relative bg-muted/10 rounded-3xl overflow-hidden mb-12 border border-border/10 shadow-sm shadow-black/5">
-          <Image src={project.image} alt={project.title} fill className="object-cover" />
+          <Image
+            src={project.image}
+            alt={`Screenshot of ${project.title}`}
+            fill
+            className="object-cover"
+          />
         </div>
       ) : (
         <div className="w-full h-64 bg-card rounded-3xl mb-12 flex items-center justify-center border border-border/10 shadow-sm shadow-black/5">

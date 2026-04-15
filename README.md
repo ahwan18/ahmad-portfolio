@@ -96,3 +96,26 @@ To add, edit or remove projects, you do **not** need to touch the UI code.
    }
    ```
 4. Save the file! The page will instantly hot-reload with the new project elegantly animated into the showcase layout.
+
+---
+
+## 🔎 Final SEO Setup
+
+The site metadata, sitemap, robots file, and social preview URLs all read the base domain from `NEXT_PUBLIC_SITE_URL`.
+
+### Update the domain name
+
+1. Set the environment variable in your deployment platform or local `.env` file:
+   ```bash
+   NEXT_PUBLIC_SITE_URL=https://your-real-domain.com
+   ```
+2. If you prefer a hardcoded value, update the fallback in [`lib/site.ts`](./lib/site.ts).
+3. Rebuild the project after changing the domain so the sitemap, canonical URLs, Open Graph tags, and Twitter card links all regenerate with the new host.
+
+### What this powers
+
+- Canonical URLs in `app/layout.tsx`
+- Project metadata in `app/projects/[slug]/page.tsx`
+- `sitemap.xml` from `app/sitemap.ts`
+- `robots.txt` from `app/robots.ts`
+- Social preview cards for LinkedIn, X, and other crawlers
