@@ -107,7 +107,7 @@ The site metadata, sitemap, robots file, and social preview URLs all read the ba
 
 1. Set the environment variable in your deployment platform or local `.env` file:
    ```bash
-   NEXT_PUBLIC_SITE_URL=https://your-real-domain.com
+   NEXT_PUBLIC_SITE_URL=https://ahmad-portfolios.vercel.app
    ```
 2. If you prefer a hardcoded value, update the fallback in [`lib/site.ts`](./lib/site.ts).
 3. Rebuild the project after changing the domain so the sitemap, canonical URLs, Open Graph tags, and Twitter card links all regenerate with the new host.

@@ -36,7 +36,7 @@ export default function OpenGraphImage() {
         >
           <div
             style={{
-              display: "inline-flex",
+              display: "flex", // changed from 'inline-flex' to 'flex'
               alignItems: "center",
               alignSelf: "flex-start",
               padding: "12px 18px",
