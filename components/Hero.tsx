@@ -4,7 +4,7 @@ import { InteractiveHeroBackground } from "./InteractiveHeroBackground";
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden">
       <InteractiveHeroBackground />
 
       <div className="container mx-auto px-6 z-10 flex flex-col items-center text-center">

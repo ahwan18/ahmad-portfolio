@@ -3,7 +3,7 @@ import { GraduationCap, Award } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="py-24 border-y border-border/10 bg-black/[0.02] dark:bg-white/[0.02]">
+    <section id="about" className="min-h-screen flex flex-col justify-center py-24 border-y border-border/10 bg-black/[0.02] dark:bg-white/[0.02]">
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="grid md:grid-cols-2 gap-16 items-center">
 

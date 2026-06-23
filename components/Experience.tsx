@@ -3,7 +3,7 @@ import { Briefcase, Code, Network, Rocket } from "lucide-react";
 
 export function Experience() {
   return (
-    <section id="experience" className="py-24 border-y border-border/10 bg-black/[0.02] dark:bg-white/[0.01]">
+    <section id="experience" className="min-h-screen flex flex-col justify-center py-24 border-y border-border/10 bg-black/[0.02] dark:bg-white/[0.01]">
       <div className="container mx-auto px-6 max-w-5xl">
 
         <FadeIn>

@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { Navbar } from "../components/Navbar";
 import { BackgroundDecoration } from "../components/BackgroundDecoration";
+import { SliderProvider } from "../components/SliderContext";
 import { getAbsoluteUrl, siteUrl } from "@/lib/site";
 
 const siteName = "Ahmad Kurniawan Ibrahim";
@@ -23,6 +24,9 @@ const personJsonLd = {
 };
 
 export const metadata: Metadata = {
+  verification: {
+    google: "emFKx9rm13KVpIVaLckkvM2KqLXgPXedOesPvivp9rM",
+  },
   metadataBase: new URL(siteUrl),
   title: {
     default: "Ahmad Kurniawan Ibrahim | Software Engineer Enthusiast",
@@ -80,11 +84,13 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col selection:bg-accent/30 bg-background text-foreground transition-colors duration-300">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <BackgroundDecoration />
-          <Navbar />
-          <main className="flex-1 flex flex-col pt-16">
-            {children}
-          </main>
+          <SliderProvider>
+            <BackgroundDecoration />
+            <Navbar />
+            <main className="flex-1 flex flex-col pt-16">
+              {children}
+            </main>
+          </SliderProvider>
         </ThemeProvider>
       </body>
     </html>

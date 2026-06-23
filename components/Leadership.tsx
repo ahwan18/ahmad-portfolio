@@ -3,7 +3,7 @@ import { Users, Globe } from "lucide-react";
 
 export function Leadership() {
   return (
-    <section className="py-24 border-t border-border/10 bg-black/[0.01]">
+    <section id="leadership" className="py-24 border-t border-border/10 bg-black/[0.01] flex flex-col justify-center min-h-screen">
       <div className="container mx-auto px-6 max-w-5xl">
         <FadeIn>
           <h2 className="text-3xl md:text-5xl font-semibold mb-12 tracking-tight">Organizational <br className="hidden md:block"/><span className="text-muted">Experience</span></h2>

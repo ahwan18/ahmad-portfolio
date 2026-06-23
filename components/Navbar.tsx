@@ -6,69 +6,37 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useSlider } from "./SliderContext";
 
 const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Experience", href: "#experience" },
+  { name: "Leadership", href: "#leadership" },
   { name: "Projects", href: "#projects" },
 ];
 
 export function Navbar() {
+  const { currentIndex, goToSection } = useSlider();
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const isManualScrolling = useRef(false);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
-
   useEffect(() => {
-    // Only track intersection if we are on the homepage
-    if (pathname !== "/") return;
+    setActiveSection(navLinks[currentIndex].href.substring(1));
+  }, [currentIndex]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // If we clicked a link recently, ignore observer events to prevent jumping back
-        if (isManualScrolling.current) return;
-
-        const visibleSections = entries.filter((entry) => entry.isIntersecting);
-        if (visibleSections.length > 0) {
-          const mostVisible = visibleSections.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          setActiveSection(mostVisible.target.id);
-        }
-      },
-      { rootMargin: "-20% 0px -40% 0px", threshold: 0 } 
-    );
-
-    navLinks.forEach(({ href }) => {
-      const section = document.querySelector(href);
-      if (section) observer.observe(section);
-    });
-
-    return () => observer.disconnect();
-  }, [pathname]);
-
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+  const isManualScrolling = useRef(false);
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string, index: number) => {
     if (pathname !== "/" && href.startsWith("#")) {
        return; // Standard next link routing away from project pages
     }
     
     if (href.startsWith("#")) {
       e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-        
-        isManualScrolling.current = true;
-        setActiveSection(href.substring(1));
-        element.scrollIntoView({ behavior: "smooth" });
-        setIsMobileMenuOpen(false);
-
-        scrollTimeout.current = setTimeout(() => {
-          isManualScrolling.current = false;
-        }, 1000); 
-      }
+      goToSection(index);
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -83,7 +51,7 @@ export function Navbar() {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/95 to-transparent -z-10" />
         
         <div className="container mx-auto max-w-6xl px-6 pt-4">
-          <nav className="pointer-events-auto flex flex-col md:flex-row md:items-center justify-between px-6 py-3 rounded-[2rem] bg-white/40 dark:bg-black/40 backdrop-blur-xl border border-border/20 shadow-sm shadow-black/5">
+          <nav className="pointer-events-auto flex flex-col md:flex-row md:items-center justify-between px-6 py-3 rounded-[2rem] bg-white/70 dark:bg-black/70 backdrop-blur-2xl border border-border/20 shadow-sm shadow-black/5">
             <div className="flex items-center justify-between w-full md:w-auto">
               <Link href="/" className="font-semibold text-lg hover:opacity-80 transition-opacity">
                 Ahmad<span className="text-accent">.</span>
@@ -106,7 +74,7 @@ export function Navbar() {
                   <Link 
                     key={link.name} 
                     href={pathname === "/" ? link.href : `/${link.href}`}
-                    onClick={(e) => handleScroll(e, link.href)}
+                    onClick={(e) => handleScroll(e, link.href, navLinks.indexOf(link))}
                     className={`px-4 py-1.5 text-sm font-medium rounded-full transition-all duration-300 ${
                       isActive && pathname === "/" 
                         ? 'bg-foreground/10 text-foreground shadow-sm' 
@@ -136,7 +104,7 @@ export function Navbar() {
                     <Link 
                       key={link.name} 
                       href={pathname === "/" ? link.href : `/${link.href}`}
-                      onClick={(e) => handleScroll(e, link.href)}
+                      onClick={(e) => handleScroll(e, link.href, navLinks.indexOf(link))}
                       className={`px-4 py-2 text-sm font-medium rounded-lg ${isActive ? 'bg-accent/10 text-accent' : 'text-muted hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5'}`}
                     >
                       {link.name}
