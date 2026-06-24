@@ -1,4 +1,4 @@
-const FALLBACK_SITE_URL = "https://your-domain.com";
+const FALLBACK_SITE_URL = "https://ahmad-portfolios.vercel.app";
 
 function normalizeSiteUrl(value: string) {
   const trimmed = value.trim().replace(/\/+$/, "");

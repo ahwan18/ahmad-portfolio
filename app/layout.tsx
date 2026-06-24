@@ -22,6 +22,7 @@ const personJsonLd = {
 };
 
 export const metadata: Metadata = {
+  applicationName: siteName,
   verification: {
     google: "emFKx9rm13KVpIVaLckkvM2KqLXgPXedOesPvivp9rM",
   },
