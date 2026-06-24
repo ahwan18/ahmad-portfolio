@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { Navbar } from "../components/Navbar";
-import { BackgroundDecoration } from "../components/BackgroundDecoration";
-import { SliderProvider } from "../components/SliderContext";
 import { getAbsoluteUrl, siteUrl } from "@/lib/site";
 
 const siteName = "Ahmad Kurniawan Ibrahim";
@@ -75,22 +73,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`min-h-screen scroll-smooth antialiased bg-background text-foreground`}>
+    <html lang="en" suppressHydrationWarning className="min-h-screen antialiased bg-background text-foreground">
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col selection:bg-accent/30 bg-background text-foreground transition-colors duration-300">
+      <body className="min-h-screen flex flex-col selection:bg-accent/25 bg-background text-foreground transition-colors duration-200">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SliderProvider>
-            <BackgroundDecoration />
-            <Navbar />
-            <main className="flex-1 flex flex-col pt-16">
-              {children}
-            </main>
-          </SliderProvider>
+          <Navbar />
+          <main className="flex-1 flex flex-col">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

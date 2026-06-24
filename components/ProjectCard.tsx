@@ -1,116 +1,105 @@
-import { ExternalLink, Folder } from "lucide-react";
+import { ArrowRight, ExternalLink, Folder } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Project } from "../data/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
-  return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group block"
-    >
-      <div className="bg-card border border-border/10 rounded-3xl overflow-hidden flex flex-col h-full 
-        hover:border-accent/40 transition-all duration-300 
-        shadow-sm shadow-black/5 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl hover:shadow-accent/10 cursor-pointer">
+  const projectHref = `/projects/${project.slug}`;
 
-        {/* IMAGE */}
+  return (
+    <article className="bg-card border border-border rounded-3xl overflow-hidden flex flex-col h-full shadow-sm shadow-black/5">
+      <Link
+        href={projectHref}
+        className="block focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-accent"
+        aria-label={`View ${project.title} case study`}
+      >
         {project.image ? (
-          <div className="aspect-video w-full relative bg-muted/10 overflow-hidden">
+          <div className="aspect-video w-full relative bg-background overflow-hidden border-b border-border">
             <Image
               src={project.image}
               alt={`Screenshot of ${project.title}`}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
+              className="object-cover"
             />
           </div>
         ) : (
-          <div className="aspect-video w-full relative bg-muted/10 flex items-center justify-center border-b border-border/10">
-            <Folder className="w-12 h-12 text-muted group-hover:scale-110 transition-transform duration-300" />
+          <div className="aspect-video w-full relative bg-background flex items-center justify-center border-b border-border">
+            <Folder className="w-11 h-11 text-muted" aria-hidden="true" />
           </div>
         )}
+      </Link>
 
-        {/* CONTENT */}
-        <div className="p-6 flex flex-col flex-1">
-
-          {/* HEADER */}
-          <div className="flex justify-between items-start mb-4">
-            <div>
-              <h3 className="font-semibold text-lg text-foreground">
+      <div className="p-6 flex flex-col flex-1">
+        <div className="flex justify-between items-start gap-4 mb-4">
+          <div>
+            <h3 className="font-semibold text-lg text-foreground">
+              <Link href={projectHref} className="hover:text-accent transition-colors duration-150">
                 {project.title}
-              </h3>
-              <span className="text-xs font-semibold uppercase tracking-wider text-accent">
-                {project.category}
-              </span>
-            </div>
+              </Link>
+            </h3>
+            <span className="text-xs font-semibold tracking-wide text-accent">
+              {project.category}
+            </span>
+          </div>
 
-            {/* External Link (STOP PROPAGATION) */}
-            {project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="p-2 bg-black/5 dark:bg-white/5 rounded-full 
-                hover:bg-black/10 dark:hover:bg-white/10 
-                transition-colors text-muted hover:text-foreground"
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 bg-background border border-border rounded-full text-muted hover:text-accent hover:border-accent transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              aria-label={`Open ${project.title} external link`}
+            >
+              <ExternalLink className="w-4 h-4" aria-hidden="true" />
+            </a>
+          )}
+        </div>
+
+        <p className="text-sm text-muted leading-relaxed mb-5 line-clamp-3">
+          {project.objective}
+        </p>
+
+        <div className="mb-5">
+          <p className="text-xs text-muted font-semibold mb-2">Roles</p>
+          <div className="flex flex-wrap gap-2">
+            {project.roles.map((role) => (
+              <span
+                key={role}
+                className="text-xs font-medium text-foreground bg-background border border-border px-2.5 py-1 rounded-md"
               >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            )}
-          </div>
-
-          {/* OBJECTIVE */}
-          <p className="text-sm text-muted font-light leading-relaxed mb-4 line-clamp-3">
-            {project.objective}
-          </p>
-
-          {/* ROLES */}
-          <div className="mb-4">
-            <div className="flex flex-wrap gap-1">
-              <span className="text-[10px] text-muted mr-1 mt-0.5">
-                ROLES:
+                {role}
               </span>
-              {project.roles.map(role => (
-                <span
-                  key={role}
-                  className="text-[10px] uppercase font-bold text-muted 
-                  bg-black/5 dark:bg-white/5 px-2 py-0.5 rounded-sm"
-                >
-                  {role}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* BOTTOM */}
-          <div className="mt-auto pt-4 border-t border-border/10">
-
-            {/* RESULTS */}
-            <div className="bg-emerald-50/80 dark:bg-emerald-500/10 backdrop-blur-sm p-3 rounded-xl border border-emerald-100 dark:border-emerald-500/20">
-              <div className="flex items-start gap-2">
-                <p className="text-[12px] leading-relaxed text-emerald-700 dark:text-emerald-300 line-clamp-3">
-                  {project.results}
-                </p>
-              </div>
-            </div>
-
-            {/* TECH STACK */}
-            <div className="flex flex-wrap gap-2 mt-4">
-              {project.techStack.map((tool) => (
-                <span
-                  key={tool}
-                  className="text-xs px-2 py-1 rounded-md 
-                  bg-black/5 dark:bg-white/5 text-foreground/80 
-                  font-medium border border-border/10"
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
-
+            ))}
           </div>
         </div>
+
+        <div className="mt-auto pt-5 border-t border-border">
+          <div className="bg-emerald-50 p-3 rounded-xl border border-emerald-200 dark:bg-emerald-950/50 dark:border-emerald-800">
+            <p className="text-xs leading-relaxed text-emerald-800 dark:text-emerald-200 line-clamp-3">
+              {project.results}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-2 mt-4">
+            {project.techStack.map((tool) => (
+              <span
+                key={tool}
+                className="text-xs px-2.5 py-1 rounded-md bg-background text-foreground font-medium border border-border"
+              >
+                {tool}
+              </span>
+            ))}
+          </div>
+
+          <Link
+            href={projectHref}
+            className="inline-flex items-center gap-2 mt-5 text-sm font-semibold text-foreground hover:text-accent transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            View case study
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Link>
+        </div>
       </div>
-    </Link>
+    </article>
   );
 }

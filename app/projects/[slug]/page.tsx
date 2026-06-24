@@ -97,7 +97,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       </div>
 
       {project.image ? (
-        <div className="w-full aspect-video relative bg-muted/10 rounded-3xl overflow-hidden mb-12 border border-border/10 shadow-sm shadow-black/5">
+        <div className="w-full aspect-video relative bg-card rounded-3xl overflow-hidden mb-12 border border-border shadow-sm shadow-black/5">
           <Image
             src={project.image}
             alt={`Screenshot of ${project.title}`}
@@ -106,7 +106,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           />
         </div>
       ) : (
-        <div className="w-full h-64 bg-card rounded-3xl mb-12 flex items-center justify-center border border-border/10 shadow-sm shadow-black/5">
+        <div className="w-full h-64 bg-card rounded-3xl mb-12 flex items-center justify-center border border-border shadow-sm shadow-black/5">
            <span className="text-muted font-medium">Add high-resolution media here</span>
         </div>
       )}
@@ -131,18 +131,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
 
         <div className="space-y-8">
-          <div className="bg-card p-6 rounded-2xl border border-border/10 shadow-sm shadow-black/5">
+          <div className="bg-card p-6 rounded-2xl border border-border shadow-sm shadow-black/5">
             <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2"><Code className="w-4 h-4 text-muted"/> Tech Stack</h3>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map(tech => (
-                <span key={tech} className="px-3 py-1.5 bg-black/5 dark:bg-white/5 border border-border/10 text-foreground/80 rounded-lg text-sm font-medium">
+                <span key={tech} className="px-3 py-1.5 bg-background border border-border text-foreground rounded-lg text-sm font-medium">
                   {tech}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="bg-card p-6 rounded-2xl border border-border/10 shadow-sm shadow-black/5">
+          <div className="bg-card p-6 rounded-2xl border border-border shadow-sm shadow-black/5">
             <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2"><UserCircle className="w-4 h-4 text-muted"/> Responsibilities</h3>
             <ul className="space-y-2">
               {project.roles.map(role => (

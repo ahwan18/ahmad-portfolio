@@ -1,27 +1,23 @@
-import { FadeIn } from "./FadeIn";
 import { GraduationCap, Award } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="min-h-screen flex flex-col justify-center py-24 border-y border-border/10 bg-black/[0.02] dark:bg-white/[0.02]">
+    <section id="about" className="min-h-screen flex flex-col justify-center py-24 border-y border-border bg-card/40">
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="grid md:grid-cols-2 gap-16 items-center">
 
-          <FadeIn direction="left">
+          <div>
             <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight">
               About & <br className="hidden md:block" />
               <span className="text-muted">Education</span>
             </h2>
             <p className="text-lg text-foreground/80 mb-6 font-light leading-relaxed">
-              I am an Informatics student at STIKOM EL-RAHMA and an alumnus of the Apple Developer Academy, with a strong passion for modern software development. I am an Informatics student at STIKOM EL-RAHMA and an alumnus of the Apple Developer Academy, with a strong passion for modern software development.
+              I am an Informatics student at STIKOM EL-RAHMA and an alumnus of the Apple Developer Academy, with a strong passion for modern software development.
             </p>
-          </FadeIn>
+          </div>
 
-          <FadeIn direction="right">
-            <div className="bg-card rounded-3xl p-8 border border-border/10 relative overflow-hidden shadow-sm shadow-black/5 transition-colors duration-300">
-              {/* Subtle gradient effect in card */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
-
+          <div>
+            <div className="bg-card rounded-3xl p-8 border border-border shadow-sm shadow-black/5">
               <div className="flex items-start gap-4 mb-8">
                 <div className="p-3 bg-black/10 dark:bg-white/10 rounded-2xl">
                   <GraduationCap className="w-6 h-6 text-foreground" />
@@ -32,7 +28,7 @@ export function About() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 py-4 border-t border-border/10">
+              <div className="flex items-center gap-4 py-4 border-t border-border">
                 <div className="p-3 bg-accent/10 rounded-2xl">
                   <Award className="w-6 h-6 text-accent" />
                 </div>
@@ -42,7 +38,7 @@ export function About() {
                 </div>
               </div>
             </div>
-          </FadeIn>
+          </div>
 
         </div>
       </div>
