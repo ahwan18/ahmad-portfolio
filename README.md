@@ -84,6 +84,10 @@ Most portfolio content is data-driven. To update projects, edit `data/projects.t
   roles: ["Developer", "Researcher"],
   techStack: ["Swift", "SwiftUI"],
   results: "Concrete result or validation metric.",
+  highlights: ["App Store release", "30+ user validation"],
+  status: "App Store",
+  ctaLabel: "View GitHub",
+  featured: true,
   image: "/images/project-image.jpg",
   link: "https://example.com"
 }

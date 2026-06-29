@@ -1,18 +1,18 @@
 const skills = [
   {
-    category: "Languages",
-    summary: "Core programming languages used across mobile, backend, and web work.",
-    items: ["SwiftUI", "TypeScript", "JavaScript", "Node.js", "Python", "Java", "PHP"],
+    category: "Languages & Runtime",
+    summary: "Languages and runtimes I use across mobile, web, and backend projects.",
+    items: ["Swift", "Kotlin", "TypeScript", "JavaScript", "Node.js", "Python", "PHP"],
   },
   {
-    category: "Frameworks",
-    summary: "Frameworks and platform APIs for building production-style products.",
-    items: ["Next.js", "React", "ExpressJS", "SwiftData", "Vision", "TailwindCSS"],
+    category: "Product Frameworks",
+    summary: "Frameworks and platform APIs used in the projects featured on this site.",
+    items: ["SwiftUI", "Jetpack Compose", "Next.js", "React", "SwiftData", "Vision"],
   },
   {
     category: "Tools & Databases",
-    summary: "Tools used for collaboration, persistence, and delivery workflows.",
-    items: ["Git", "Figma", "Xcode", "MySQL", "MariaDB", "PostgreSQL"],
+    summary: "Tools for designing, storing data, collaborating, and shipping work.",
+    items: ["Git", "Figma", "Xcode", "Supabase", "PostgreSQL", "Vercel"],
   },
 ];
 

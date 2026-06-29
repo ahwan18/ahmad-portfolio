@@ -8,8 +8,8 @@ const roleBadges = [
 ];
 
 const highlights = [
-  { value: "5+", label: "Product projects" },
-  { value: "30+", label: "Users validated" },
+  { value: "9", label: "Featured builds" },
+  { value: "App Store", label: "Published iOS app" },
   { value: "3.87", label: "Current GPA" },
 ];
 
@@ -28,7 +28,7 @@ export function Hero() {
         </h1>
 
         <p className="mx-auto mb-7 max-w-3xl text-lg leading-relaxed text-muted md:text-2xl">
-          Software Engineering student focused on iOS, web, and full-stack development. I build practical products with SwiftUI, Next.js, and Node.js.
+          Software Engineering student building iOS, Android, and web products with a practical product mindset: ship, validate, and improve.
         </p>
 
         <div className="mb-10 flex flex-wrap justify-center gap-2.5">
