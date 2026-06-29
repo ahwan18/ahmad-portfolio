@@ -89,6 +89,8 @@ Most portfolio content is data-driven. To update projects, edit `data/projects.t
 }
 ```
 
+Available categories currently used by the site: `iOS`, `macOS`, `Android`, `Web`, `Full-stack`, and `Other`.
+
 Use a simple format for every project:
 
 1. Problem: what user or business problem the project solves.
@@ -120,10 +122,10 @@ After changing the domain:
 For best recruiter visibility, pin these repositories on GitHub:
 
 1. `ahmad-portfolio`
-2. `DreamRankApp`
+2. `CameraPosture`
 3. `C2-HueMen`
-4. `CameraPosture`
-5. `Pomoboo_MacOSV2`
-6. A full-stack or web project with a clean README and live demo
+4. `safa_ecommerce`
+5. `InternTrack`
+6. `e-Commerce-Project`
 
 Avoid pinning support-only repositories such as privacy policy or support pages unless they are part of an app release requirement.
